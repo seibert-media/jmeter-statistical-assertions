@@ -1,25 +1,20 @@
 package net.seibertmedia.jmeter.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class JMeterStatisticsReport {
 
     private final JMeterStatistics jMeterStatistics;
-    private final List<String> columns = new ArrayList<>();
-    private final Map<String, Function<JMeterStatistic, Double>> getterByLabel = new HashMap<>();
+    private final List<JMeterStatistic.Getter> columns = new ArrayList<>();
 
     public JMeterStatisticsReport(JMeterStatistics jMeterStatistics) {
         this.jMeterStatistics = jMeterStatistics;
     }
 
-    public void addValueColumn(String columnName, Function<JMeterStatistic, Double> getter) {
-        columns.add(columnName);
-        getterByLabel.put(columnName, getter);
+    public void addValueColumn(JMeterStatistic.Getter columnGetter) {
+        columns.add(columnGetter);
     }
 
     public void printReport() {
@@ -42,7 +37,7 @@ public class JMeterStatisticsReport {
             JMeterStatistic statisticsForLabel = jMeterStatistics.getStatisticForLabel(label);
 
             final Double[] values = columns.stream()
-                    .map(s -> getterByLabel.get(s).apply(statisticsForLabel))
+                    .map(column -> column.getGetter().apply(statisticsForLabel))
                     .collect(Collectors.toList()).toArray(new Double[columns.size()]);
 
             System.out.printf(firstColumnFormat, label);

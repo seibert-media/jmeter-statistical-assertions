@@ -1,11 +1,48 @@
 package net.seibertmedia.jmeter.util;
 
 
+import java.util.function.Function;
+
 import org.apache.commons.math3.exception.MathIllegalArgumentException;
 import org.apache.commons.math3.exception.MathIllegalStateException;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 public class JMeterStatistic {
+
+    public enum Getter {
+        max(JMeterStatistic::getMax),
+        mean(JMeterStatistic::getMean),
+        median(JMeterStatistic::getMedian),
+        min(JMeterStatistic::getMin),
+        p90(JMeterStatistic::getPercentile90),
+        p95(JMeterStatistic::getPercentile95),
+        p99(JMeterStatistic::getPercentile99),;
+
+        private final String displayName;
+        private final Function<JMeterStatistic, Double> getter;
+
+        Getter(Function<JMeterStatistic, Double> getter) {
+            this(null, getter);
+        }
+
+        Getter(String displayName, Function<JMeterStatistic, Double> getter) {
+            this.displayName = displayName;
+            this.getter = getter;
+        }
+
+        public Function<JMeterStatistic, Double> getGetter() {
+            return getter;
+        }
+
+        @Override
+        public String toString() {
+            if (displayName == null) {
+                return super.toString();
+            } else {
+                return displayName;
+            }
+        }
+    }
 
     private final DescriptiveStatistics statistics = new DescriptiveStatistics();
 
@@ -65,15 +102,15 @@ public class JMeterStatistic {
         return statistics.getPercentile(50);
     }
 
-    public double get90Percentile() {
+    public double getPercentile90() {
         return statistics.getPercentile(90);
     }
 
-    public double get95Percentile() {
+    public double getPercentile95() {
         return statistics.getPercentile(95);
     }
 
-    public double get99Percentile() {
+    public double getPercentile99() {
         return statistics.getPercentile(99);
     }
 }
