@@ -3,24 +3,17 @@ package net.seibertmedia.jmeter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.function.Function;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
 import net.seibertmedia.jmeter.util.JMeterStatistic;
-import net.seibertmedia.jmeter.util.JMeterStatisticsReport;
 import net.seibertmedia.jmeter.util.JMeterStatistics;
+import net.seibertmedia.jmeter.util.JMeterStatisticsReport;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
+public class App {
 
-
-    public static void main( String[] args ) throws IOException {
+    public static void main(String[] args) throws IOException {
         if (args.length < 2 || !args[0].matches("report")) {
             usage();
             System.exit(1);
@@ -51,7 +44,6 @@ public class App
 
             elapsedStatistic.addValueForLabel(label, elapsed);
         }
-
 
         JMeterStatisticsReport jMeterStatisticReport = new JMeterStatisticsReport(elapsedStatistic);
 

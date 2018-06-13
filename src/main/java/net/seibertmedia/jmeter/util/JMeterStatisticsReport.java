@@ -11,7 +11,7 @@ public class JMeterStatisticsReport {
 
     private final JMeterStatistics jMeterStatistics;
     private final List<String> columns = new ArrayList<>();
-    private final Map<String, Function<JMeterStatistic, Double> > getterByLabel = new HashMap<>();
+    private final Map<String, Function<JMeterStatistic, Double>> getterByLabel = new HashMap<>();
 
     public JMeterStatisticsReport(JMeterStatistics jMeterStatistics) {
         this.jMeterStatistics = jMeterStatistics;
@@ -27,18 +27,18 @@ public class JMeterStatisticsReport {
         int valueColumnWidth = 6;
 
         String firstColumnFormat = "%-" + labelColumnWidth + "s";
-        String valueColumnsFormat =  nString(" | %" + valueColumnWidth + ".0f ", columns.size());
+        String valueColumnsFormat = nString(" | %" + valueColumnWidth + ".0f ", columns.size());
 
         // first header column
         System.out.printf("%-" + labelColumnWidth + "s", "Label");
 
         // header value column format
         String format = nString(" | %" + valueColumnWidth + "s ", columns.size()) + "\n";
-        System.out.printf(format , columns.toArray(new Object[columns.size()]));
+        System.out.printf(format, columns.toArray(new Object[columns.size()]));
 
         System.out.println(nString("=", labelColumnWidth) + nString(" | =" + nString("=", valueColumnWidth), columns.size()));
 
-        for (String label: jMeterStatistics.getLabels()) {
+        for (String label : jMeterStatistics.getLabels()) {
             JMeterStatistic statisticsForLabel = jMeterStatistics.getStatisticForLabel(label);
 
             final Double[] values = columns.stream()
