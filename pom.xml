@@ -6,7 +6,7 @@
 
   <groupId>net.seibertmedia.jmeter</groupId>
   <artifactId>jmeter-statistical-assertions</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
 
   <name>jmeter-statistical-assertions</name>
   <!-- FIXME change it to the project's website -->
@@ -82,4 +82,18 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <name>Release Repository</name>
+      <url>https://nexus.apps.seibert-media.net/nexus/repository/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>snapshots Repository</name>
+      <url>https://nexus.apps.seibert-media.net/nexus/repository/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
 </project>
