@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-mvn clean compile assembly:single deploy
+mvn -U clean compile assembly:single deploy
