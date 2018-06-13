@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import net.seibertmedia.jmeter.commands.AppCommand;
 import net.seibertmedia.jmeter.commands.AppCommandException;
+import net.seibertmedia.jmeter.commands.check.AssertionFailed;
 
 public class App {
 
@@ -14,6 +15,8 @@ public class App {
         } catch (AppCommandException e) {
             System.out.println("Usage: <command> <filename>\n");
             e.printStackTrace();
+            System.exit(1);
+        } catch (AssertionFailed assertionFailed) {
             System.exit(1);
         }
     }

@@ -1,0 +1,4 @@
+thresholds:
+  / (Dashboard):
+    median: 500
+    max: 2500

@@ -6,8 +6,12 @@ import static net.seibertmedia.jmeter.commands.AppCommandParameter.createParamet
 import java.util.HashMap;
 import java.util.Map;
 
+import net.seibertmedia.jmeter.commands.check.AssertionFailed;
+import net.seibertmedia.jmeter.commands.check.CheckCommandFunction;
+
 public enum AppCommand {
-    report("Create a report", new ReportCommandFunction(), createParameter("filename"));
+    report("Create a report", new ReportCommandFunction(), createParameter("filename")),
+    check("Check", new CheckCommandFunction(), createParameter("filename"), createParameter("assertions-filename"));
 
     private final String description;
     private final AppCommandFunction commandFunction;
@@ -19,7 +23,7 @@ public enum AppCommand {
         this.params = params;
     }
 
-    public void execute(String[] args) throws AppCommandException {
+    public void execute(String[] args) throws AppCommandException, AssertionFailed {
         try {
             final Map<String, String> commandParams = new HashMap<>();
 
@@ -28,6 +32,8 @@ public enum AppCommand {
             }
 
             commandFunction.apply(commandParams);
+        } catch (AssertionFailed e) {
+            throw e;
         } catch (Exception e) {
             throw new AppCommandException(e);
         }
