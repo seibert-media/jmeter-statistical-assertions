@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-mvn -U clean compile assembly:single deploy
+atlas-mvn -U clean compile assembly:single deploy
