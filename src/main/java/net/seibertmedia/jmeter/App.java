@@ -13,21 +13,37 @@ import net.seibertmedia.jmeter.util.JMeterStatisticsReport;
 
 public class App {
 
-    public static void main(String[] args) throws IOException {
-        if (args.length < 2 || !args[0].matches("report")) {
-            usage();
-            System.exit(1);
-        }
-
-        String command = args[0];
-        String filename = args[1];
-
-        report(filename);
-
+    enum Command {
+        report
     }
 
-    public static void usage() {
+    public static void main(String[] args) throws IOException {
+        if (args.length < 2) {
+            exitWithUsageInfo();
+        }
+
+        Command command = parseCommand(args[0]);
+        String filename = args[1];
+
+        switch (command) {
+            case report:
+                report(filename);
+                break;
+        }
+    }
+
+    public static Command parseCommand(String arg) {
+        try {
+            return Command.valueOf(arg);
+        } catch (IllegalArgumentException e) {
+            exitWithUsageInfo();
+            return null;
+        }
+    }
+
+    public static void exitWithUsageInfo() {
         System.out.println("Usage: <command> <filename>");
+        System.exit(1);
     }
 
     public static void report(String filename) throws IOException {
