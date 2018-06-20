@@ -10,6 +10,7 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 public class JMeterStatistic {
 
     public enum Getter {
+        n(JMeterStatistic::getN),
         max(JMeterStatistic::getMax),
         mean(JMeterStatistic::getMean),
         median(JMeterStatistic::getMedian),
@@ -82,7 +83,7 @@ public class JMeterStatistic {
         return statistics.getMin();
     }
 
-    public long getN() {
+    public double getN() {
         return statistics.getN();
     }
 

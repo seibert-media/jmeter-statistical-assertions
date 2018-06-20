@@ -4,6 +4,7 @@ import static net.seibertmedia.jmeter.util.JMeterStatistic.Getter.max;
 import static net.seibertmedia.jmeter.util.JMeterStatistic.Getter.mean;
 import static net.seibertmedia.jmeter.util.JMeterStatistic.Getter.median;
 import static net.seibertmedia.jmeter.util.JMeterStatistic.Getter.min;
+import static net.seibertmedia.jmeter.util.JMeterStatistic.Getter.n;
 import static net.seibertmedia.jmeter.util.JMeterStatistic.Getter.p90;
 import static net.seibertmedia.jmeter.util.JMeterStatistic.Getter.p95;
 import static net.seibertmedia.jmeter.util.JMeterStatistic.Getter.p99;
@@ -20,6 +21,7 @@ public class ReportCommandFunction implements AppCommandFunction {
         JMeterStatistics elapsedStatistics = createStatisticsFromFilename(args.get("filename"), "elapsed");
         JMeterStatisticsReport jMeterStatisticReport = new JMeterStatisticsReport(elapsedStatistics);
 
+        jMeterStatisticReport.addValueColumn(n);
         jMeterStatisticReport.addValueColumn(min);
         jMeterStatisticReport.addValueColumn(mean);
         jMeterStatisticReport.addValueColumn(median);
