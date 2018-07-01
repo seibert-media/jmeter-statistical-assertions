@@ -1,4 +1,5 @@
 timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,Latency,IdleTime,Connect
+1528827299427,1020,/rest/enterprise-news-bundle/1.0/cover-stories (Cover-Stories Default Config),200,OK,Load Group 2 (Cover Stories) 1-60,text,true,,8376,1507,13,13,860,0,672
 1528827299427,1020,/dologin.action (Login),200,OK,Load Group 1 (Dashboard) 1-60,text,true,,8376,1507,13,13,860,0,672
 1528827301855,348,/dologin.action (Login),200,OK,Load Group 1 (Dashboard) 1-59,text,true,,8343,1511,13,13,247,0,122
 1528827304405,370,/dologin.action (Login),200,OK,Load Group 1 (Dashboard) 1-58,text,true,,8340,1508,14,14,252,0,103

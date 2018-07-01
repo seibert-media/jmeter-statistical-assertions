@@ -8,7 +8,6 @@ public class JMeterStatistics {
 
     private final Map<String, JMeterStatistic> statisticsByLabel = new HashMap<>();
 
-
     public void addValueForLabel(String label, double value) {
         if (!statisticsByLabel.containsKey(label)) {
             statisticsByLabel.put(label, new JMeterStatistic());

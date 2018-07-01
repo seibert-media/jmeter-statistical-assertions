@@ -1,10 +1,13 @@
 package net.seibertmedia.jmeter.util;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class JMeterStatisticsReport {
+
+    private static final int DEFAULT_LABEL_COLUMN_WITH = 50;
 
     private final JMeterStatistics jMeterStatistics;
     private final List<JMeterStatistic.Getter> columns = new ArrayList<>();
@@ -18,20 +21,30 @@ public class JMeterStatisticsReport {
     }
 
     public void printReport() {
-        int labelColumnWidth = 50;
-        int valueColumnWidth = 6;
+        printReport(System.out);
+    }
+
+    protected void printReport(PrintStream printStream) {
+
+        int labelColumnWidth = Math.max(DEFAULT_LABEL_COLUMN_WITH, jMeterStatistics.getLabels()
+                .stream()
+                .map(String::length)
+                .max(Integer::compareTo)
+                .orElse(DEFAULT_LABEL_COLUMN_WITH));
+
+        int valueColumnWidth = 7;
 
         String firstColumnFormat = "%-" + labelColumnWidth + "s";
-        String valueColumnsFormat = nString(" | %" + valueColumnWidth + ".0f ", columns.size());
+        String valueColumnsFormat = nString(" | %" + valueColumnWidth + ".0f", columns.size());
 
         // first header column
-        System.out.printf("%-" + labelColumnWidth + "s", "Label");
+        printStream.printf("%-" + labelColumnWidth + "s", "Label");
 
         // header value column format
-        String format = nString(" | %" + valueColumnWidth + "s ", columns.size()) + "\n";
-        System.out.printf(format, columns.toArray(new Object[columns.size()]));
+        String format = nString(" | %" + valueColumnWidth + "s", columns.size()) + "\n";
+        printStream.printf(format, columns.toArray(new Object[columns.size()]));
 
-        System.out.println(nString("=", labelColumnWidth) + nString(" | =" + nString("=", valueColumnWidth), columns.size()));
+        printStream.println(nString("=", labelColumnWidth) + nString(" | " + nString("=", valueColumnWidth), columns.size()));
 
         for (String label : jMeterStatistics.getLabels()) {
             JMeterStatistic statisticsForLabel = jMeterStatistics.getStatisticForLabel(label);
@@ -40,13 +53,13 @@ public class JMeterStatisticsReport {
                     .map(column -> column.getGetter().apply(statisticsForLabel))
                     .collect(Collectors.toList()).toArray(new Double[columns.size()]);
 
-            System.out.printf(firstColumnFormat, label);
-            System.out.printf(valueColumnsFormat + "\n", (Object[]) values);
+            printStream.printf(firstColumnFormat, label);
+            printStream.printf(valueColumnsFormat + "\n", (Object[]) values);
         }
     }
 
     private static String nString(String s, int n) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
             sb.append(s);
         }
