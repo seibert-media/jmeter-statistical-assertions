@@ -73,8 +73,8 @@ public class JMeterStatisticsReportTest {
         final String[] resultLines = sb.toString().split("\\s*\n");
         assertThat(resultLines[0], equalTo("Label                                                                         |       n |     min |  median |     max"));
         assertThat(resultLines[1], equalTo("============================================================================= | ======= | ======= | ======= | ======="));
-        assertThat(resultLines[3], equalTo("/ (Dashboard)                                                                 |      10 |       1 |      20 |    1000"));
-        assertThat(resultLines[2], equalTo("/rest/enterprise-news-bundle/1.0/cover-stories (Cover-Stories Default Config) |       1 |      15 |      15 |      15"));
+        assertThat(resultLines[2], equalTo("/ (Dashboard)                                                                 |      10 |       1 |      20 |    1000"));
+        assertThat(resultLines[3], equalTo("/rest/enterprise-news-bundle/1.0/cover-stories (Cover-Stories Default Config) |       1 |      15 |      15 |      15"));
 
     }
 
