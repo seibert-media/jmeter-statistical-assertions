@@ -32,6 +32,12 @@ public class CheckCommandFunction implements AppCommandFunction {
             final String label = reportAssertions.getLabel();
             final JMeterStatistic statisticForLabel = elapsedStatistics.getStatisticForLabel(label);
 
+            if (statisticForLabel == null) {
+                System.err.printf("✗ No values found for '%s'.\n", label);
+                failedAssertions++;
+                continue;
+            }
+
             for (Assertion assertion : reportAssertions.getAssertions()) {
                 final JMeterStatistic.Getter getter = assertion.getGetter();
                 Double statisticValue = getter.getGetter().apply(statisticForLabel);
