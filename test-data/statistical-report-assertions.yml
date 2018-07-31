@@ -1,4 +1,4 @@
 thresholds:
-  / (Dashboard):
+  Dashboard - HTML:
     median: 500
     max: 2500

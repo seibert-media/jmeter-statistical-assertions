@@ -1,8 +1,9 @@
 package net.seibertmedia.jmeter.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class JMeterStatistics {
 
@@ -19,8 +20,11 @@ public class JMeterStatistics {
         return statisticsByLabel.get(label).getPercentile(percentile);
     }
 
-    public Set<String> getLabels() {
-        return statisticsByLabel.keySet();
+    public List<String> getLabels() {
+        final List<String> labels = new ArrayList<>(statisticsByLabel.size());
+        labels.addAll(statisticsByLabel.keySet());
+        labels.sort(String::compareTo);
+        return labels;
     }
 
     public JMeterStatistic getStatisticForLabel(String label) {
