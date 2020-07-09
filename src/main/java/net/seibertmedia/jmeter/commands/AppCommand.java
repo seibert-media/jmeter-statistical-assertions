@@ -3,6 +3,7 @@ package net.seibertmedia.jmeter.commands;
 
 import static net.seibertmedia.jmeter.commands.AppCommandParameter.createParameter;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,10 @@ public enum AppCommand {
         try {
             final Map<String, String> commandParams = new HashMap<>();
 
+            if (args.length <= params.length) {
+                throw new AppCommandException("Command parameter is missing. Expected " + params.length + " parameter but got " + (args.length-1) + ".");
+            }
+
             for (int i = 0; i < params.length; i++) {
                 commandParams.put(params[i].getParameterName(), args[i + 1]);
             }
@@ -41,7 +46,8 @@ public enum AppCommand {
 
     public static AppCommand parseCommand(final String[] args) throws AppCommandException {
         if (args.length < 1) {
-            throw new AppCommandException("Command parameter is missing");
+
+            throw new AppCommandException("Command parameter is missing. Allowed commands: " + Arrays.toString(AppCommand.values()));
         }
 
         final String command = args[0];
