@@ -18,7 +18,7 @@ public class StatisticsParser {
         JMeterStatistics statistics = new JMeterStatistics();
         for (CSVRecord record : records) {
             int elapsed = Integer.parseInt(record.get(column));
-            String label = record.get("label");
+            String label = record.get("label").trim();
 
             statistics.addValueForLabel(label, elapsed);
         }

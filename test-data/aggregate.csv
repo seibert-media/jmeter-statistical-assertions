@@ -18,7 +18,7 @@ timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success
 1528827332454,331,Login - /dologin.action ,200,OK,Load Group 1 (Dashboard) 1-47,text,true,,8342,1508,25,25,205,0,86
 1528827334785,153,Dashboard - HTML,200,OK,Load Group 1 (Dashboard) 1-58,text,true,,7626,557,26,26,152,0,11
 1528827335004,290,Login - /dologin.action ,200,OK,Load Group 1 (Dashboard) 1-46,text,true,,8353,1515,26,26,182,0,91
-1528827337339,159,Dashboard - HTML,200,OK,Load Group 1 (Dashboard) 1-57,text,true,,7656,557,27,27,158,0,10
+1528827337339,159,Dashboard - HTML ,200,OK,Load Group 1 (Dashboard) 1-57,text,true,,7656,557,27,27,158,0,10
 1528827337554,308,Login - /dologin.action ,200,OK,Load Group 1 (Dashboard) 1-45,text,true,,8346,1513,27,27,186,0,89
 1528827339885,168,Dashboard - HTML,200,OK,Load Group 1 (Dashboard) 1-56,text,true,,7625,557,28,28,167,0,9
 1528827340104,292,Login - /dologin.action ,200,OK,Load Group 1 (Dashboard) 1-44,text,true,,8350,1515,28,28,168,0,94
