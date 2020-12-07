@@ -12,6 +12,7 @@ import net.seibertmedia.jmeter.commands.check.CheckCommandFunction;
 
 public enum AppCommand {
     report("Create a report", new ReportCommandFunction(), createParameter("filename")),
+    csvReport("Create a csv report", new ReportCSVCommandFunction(), createParameter("filename")),
     check("Check", new CheckCommandFunction(), createParameter("filename"), createParameter("assertions-filename"));
 
     private final String description;
